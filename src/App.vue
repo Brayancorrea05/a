@@ -1,18 +1,18 @@
 <template>
   <main>
     <pxHeader/>
-    <px-assets-table/>
+
+    <router-view class="container px-5 sm:px-20 py-20 flex justify-center" />
   </main>
 </template>
+
 <script>
 import pxHeader from '@/components/pxHeader.vue'
-import pxAssetsTable from '@/components/pxAssetsTable.vue'
 
 export default ({
   name: "app",
   components:{
     pxHeader,
-    pxAssetsTable
   }
 })
 </script>
