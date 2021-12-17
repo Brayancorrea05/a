@@ -1,12 +1,21 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <main>
+    <pxHeader/>
+    <px-assets-table/>
+  </main>
 </template>
+<script>
+import pxHeader from '@/components/pxHeader.vue'
+import pxAssetsTable from '@/components/pxAssetsTable.vue'
+
+export default ({
+  name: "app",
+  components:{
+    pxHeader,
+    pxAssetsTable
+  }
+})
+</script>
 
 <style>
 #app {
