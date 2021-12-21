@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import error from '../views/error.vue'
-
+import CoinDetail from '@/views/coinDetail.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -23,6 +23,11 @@ const routes = [
     path: '*',//url que no exista
     name: 'error',
     component: error
+  },
+  {
+    path: '/coin/:id',
+    name:'coin-detail',
+    component: CoinDetail
   }
 ]
 
