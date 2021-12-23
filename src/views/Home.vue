@@ -1,6 +1,6 @@
-<template>
-  <div class="home">
-    <px-assets-table v-bind:assets="assets"/>
+<template >
+  <div class="Home">
+       <px-assets-table :assets="assets"/>
   </div>
 </template>
 

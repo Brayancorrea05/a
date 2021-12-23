@@ -20,7 +20,7 @@ function getAssetHistory(coin){
     now.setDate(now.getDate()-1)
     const start =now.getTime()
 
-    return fetch(`${url}/assets/${coin}/history?interval=h1&start=${start}&ennd=${end}`)
+    return fetch(`${url}/assets/${coin}/history?interval=h1&start=${start}&end=${end}`)
     .then(res=> res.json())
     .then(res => res.data)
 }

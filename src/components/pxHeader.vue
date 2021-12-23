@@ -3,7 +3,7 @@
       <nav>
           <nav class="flex items-center justify-between flex-wrap bg-green-400 p-6"><!--bg:color de fondo, p:padding-->
               <div class="flex items-center felx-shrink-0 text-white mr-6">
-                  <span class="font-semibold text-xl tracking-tight">hola</span>
+                  <router-link :to="{name:'home'}" font-semibold text-xl tracking-tight>hola</router-link>
               </div>
             <div class="hidden sm:block w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div class="text-sm lg:flex-grow"></div>

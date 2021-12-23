@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import error from '../views/error.vue'
 import CoinDetail from '@/views/coinDetail.vue'
+import carga from '@/views/carga.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,6 +29,11 @@ const routes = [
     path: '/coin/:id',
     name:'coin-detail',
     component: CoinDetail
+  },
+  {
+    path: '/carga',
+    name: 'cargando',
+    component: carga
   }
 ]
 

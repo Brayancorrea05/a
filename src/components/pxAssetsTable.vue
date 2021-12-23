@@ -28,7 +28,11 @@
                   </b>
               </td>
               <td>
-                  {{a.name}}
+                  <router-link class="hover:underline text-green-600"
+                  :to="{name: 'coin-detail', params:{id:a.id}}">
+                      {{a.name}}
+                  </router-link>
+                  <small class="=ml text-gray-500">{{a.symbol}}</small>
               </td>
               <td>
                   {{a.priceUsd | dollar}}
@@ -39,21 +43,33 @@
               <td :class="a.changePercent24Hr.includes('-') ? 'text-red-700' : 'text-green-700'">
                   {{a.changePercent24Hr | percent}}
                 </td>
-              <td class="hidden sm:block"></td>
+              <td class="hidden sm:block">
+                  <px-button @click="goToCoin(a.id)"><span>Detalle</span></px-button>
+              </td>
           </tr>
       </tbody>
   </table>
 </template>
 
 <script>
+import pxButton from '@/components/pxButton.vue'
 export default {
     name:'pxAssetsTable',
+    components:{
+        pxButton
+    },
 
 
     props: {
         assets:{//permite validar el tipo
             type: Array,
             default:()=>[] //propiedad que devuelve un array 
+        }
+    },
+
+    methods:{
+        goToCoin(id){
+            this.$router.push({name:'coin-detail', params:{id}})
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col">
-      <template v-if="asset.id">
+      <template >
           <div class="flex flex-col sm:flex-row justify-around items-center"> <!--cantidad igual de espacio en cada lado de cada elemento-->
                 <div class="flex flex-col items-center">
                     <img :src="`https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`" 
@@ -32,19 +32,19 @@
                             <b class="text-gray-600 mr-5 uppercase">
                                 precio más bajo
                             </b>
-                            <span>{{ min }}</span>
+                            <span>{{min|dollar}}</span>
                         </li>
                         <li class="flex justify-center">
                             <b class="text-gray-600 mr-5 uppercase">
                                 precio más alto
                             </b>
-                            <span>{{ max }}</span>
+                            <span>{{max|dollar}}</span>
                         </li>
                         <li class="flex justify-center">
                             <b class="text-gray-600 mr-5 uppercase">
                                 precio promedio
                             </b>
-                            <span>{{ avg }}</span>
+                            <span>{{avg|dollar}}</span>
                         </li>
                         <li class="flex justify-center">
                             <b class="text-gray-600 mr-5 uppercase">
@@ -89,25 +89,10 @@ export default {
         }
     },
 
-    created(){
-        this.getCoin()
-    },
-
-    methods:{
-        getCoin(){
-            const id= this.$route.params.id
-            Promise.all([api.getAsset(id), api.getAssetHistory(id)]).then(
-                ([asset, history]) => {
-                this.asset= asset
-                this.history= history}
-            )
-        }
-    },
-
     computed:{
         min(){
             return Math.min(
-                ... this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
+                ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
             )
         },
         max(){
@@ -119,6 +104,24 @@ export default {
             return Math.abs(
                 ... this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
             )
+        }
+    },
+
+    created(){
+        this.getCoin()
+    },
+
+    methods:{
+        getCoin(){
+            const id= this.$route.params.id
+            
+            Promise.all([
+                api.getAsset(id),
+                api.getAssetHistory(id)
+            ])
+                .then(([asset, history]) => {
+                this.asset= asset
+                this.history= history})
         }
     }
 }
